@@ -5,8 +5,14 @@ Simple service for sharing files via web
 
 ```
 docker-compose up postgres
-cd api; npm run start:dev
-cd client; npm run dev
+
+cd api
+cp .env.example .env
+# correct .env
+npm run start:dev
+
+cd client
+npm run dev
 ```
 
 ## TODO
