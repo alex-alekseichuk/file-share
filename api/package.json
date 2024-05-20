@@ -1,0 +1,28 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Simple service to share files via web",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "dotenv node server.js",
+    "start:dev": "dotenv nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/multipart": "^8.2.0",
+    "@fastify/one-line-logger": "^1.3.0",
+    "@fastify/static": "^7.0.4",
+    "archiver": "^7.0.1",
+    "fastify": "^4.27.0",
+    "fastify-prisma-client": "^6.0.0",
+    "unzipper": "^0.11.6"
+  },
+  "devDependencies": {
+    "prisma": "^5.14.0"
+  }
+}

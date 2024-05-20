@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgres:
+    container_name: file-share-postgres
+    image: "postgres:latest"
+    ports:
+      - "5432:${POSTGRES_PORT:-5432}"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      POSTGRES_DB: ${POSTGRES_NAME:-file_share}
+    volumes:
+      - ./data/postgres-data:/var/lib/postgresql/data
+
+  api:
+    container_name: file-share-api
+    build:
+      context: .
+      dockerfile: ./build/docker/api.Dockerfile
+
+    healthcheck:
+      test: ["CMD", "wget", "-no-verbose", "-O-", "--tries=1", "--spider", "http://127.0.0.1:3001/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: on-failure
+    ports:
+      - "3001:3001"
